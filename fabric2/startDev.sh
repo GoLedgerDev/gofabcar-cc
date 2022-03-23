@@ -5,6 +5,6 @@
 rm -rf organizations/peerOrganizations
 rm -rf organizations/ordererOrganizations
 rm -rf organizations/rest-certs
-docker network create cc-tools-demo-net
+docker network create gofabcar-cc-net
 ./network.sh up createChannel
-./network.sh deployCC -ccn cc-tools-demo -ccp ../chaincode -ccl go
+./network.sh deployCC -ccn gofabcar-cc -ccp ../chaincode -ccl go

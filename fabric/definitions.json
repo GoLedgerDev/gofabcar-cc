@@ -8,7 +8,7 @@
         "channelName": "mainchannel",
         "chaincodes": [
           {
-            "chaincodeName": "cc-tools-demo",
+            "chaincodeName": "gofabcar-cc",
             "init": "",
             "endorsement": {
               "identities": [
