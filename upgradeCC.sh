@@ -20,28 +20,6 @@ curl -sS -k -X POST \
             \"chaincodeVersion\": \"${version}\"
         }" > /dev/null
 
-curl -sS -k -X POST \
-    'https://localhost:3001/api/v1/network/channel/chaincode/install' \
-    --header 'gofabricversion: 0.9.0' \
-    -H 'magicnumber: dfff482c-1df5-42ad-95d4-d8d72b2398be' \
-    -H 'Content-Type: application/json' \
-    -d "{
-            \"channelName\": \"mainchannel\",
-            \"chaincode\": \"gofabcar-cc\",
-            \"chaincodeVersion\": \"${version}\"
-        }" > /dev/null
-
-curl -sS -k -X POST \
-    'https://localhost:3002/api/v1/network/channel/chaincode/install' \
-    --header 'gofabricversion: 0.9.0' \
-    -H 'magicnumber: dfff482c-1df5-42ad-95d4-d8d72b2398be' \
-    -H 'Content-Type: application/json' \
-    -d "{
-            \"channelName\": \"mainchannel\",
-            \"chaincode\": \"gofabcar-cc\",
-            \"chaincodeVersion\": \"${version}\"
-        }" > /dev/null
-
 printf "\nUpgrade chaincode to version $1\n"
 curl -k -X POST \
     'https://localhost:3000/api/v1/network/channel/chaincode/upgrade' \
@@ -52,39 +30,7 @@ curl -k -X POST \
             \"channelName\": \"mainchannel\",
             \"chaincode\": \"gofabcar-cc\",
             \"chaincodeVersion\": \"${version}\",
-            \"chaincodeType\": \"golang\",
-            \"endorsement\": {
-              \"identities\": [
-                  {
-                      \"role\": {
-                          \"name\": \"member\",
-                          \"mspId\": \"org1MSP\"
-                      }
-                  },
-                  {
-                      \"role\": {
-                          \"name\": \"member\",
-                          \"mspId\": \"org2MSP\"
-                      }
-                  },
-                  {
-                      \"role\": {
-                          \"name\": \"member\",
-                          \"mspId\": \"org3MSP\"
-                      }
-                  }
-              ],
-              \"policy\": {
-                  \"1-of\": [
-                      {
-                          \"signed-by\": 1
-                      },
-                      {
-                          \"signed-by\": 2
-                      }
-                  ]
-              }
-          }
+            \"chaincodeType\": \"golang\"
         }"
 
 printf '\n'

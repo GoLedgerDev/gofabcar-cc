@@ -54620,7 +54620,7 @@
              * ExecutionEnvironment enum.
              * @name protos.ChaincodeDeploymentSpec.ExecutionEnvironment
              * @enum {string}
-             * @property {number} DOCKER=0 DOCKER value
+             * @property {number} DEPLOY=0 DOCKER value
              * @property {number} SYSTEM=1 SYSTEM value
              */
             ChaincodeDeploymentSpec.ExecutionEnvironment = (function() {

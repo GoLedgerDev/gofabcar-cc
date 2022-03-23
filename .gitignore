@@ -9,3 +9,7 @@ rest-server/dist/*
 rest-server/docker-compose-org*
 gofabcar-cc.tar.gz
 package-lock.json
+
+
+fabric-3orgs
+rest-server3orgs

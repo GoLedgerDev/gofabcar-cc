@@ -19,16 +19,12 @@ docker ps -a | grep "ccapi" | awk '{print $1}' | xargs docker rm
 if [ $HTTPS = "true" ]
 then
   sed "s/PORT/443/g" template/docker-compose-org1-template.yaml > docker-compose-org1.yaml
-  sed "s/PORT/443/g" template/docker-compose-org2-template.yaml > docker-compose-org2.yaml
-  sed "s/PORT/443/g" template/docker-compose-org3-template.yaml > docker-compose-org3.yaml
   # Generate self-signed cert
 else
   sed "s/PORT/80/g" template/docker-compose-org1-template.yaml > docker-compose-org1.yaml
-  sed "s/PORT/80/g" template/docker-compose-org2-template.yaml > docker-compose-org2.yaml
-  sed "s/PORT/80/g" template/docker-compose-org3-template.yaml > docker-compose-org3.yaml
 fi
 
-docker-compose -f docker-compose-org1.yaml -f docker-compose-org2.yaml -f docker-compose-org3.yaml -f docker-compose-temp.yaml down --volumes
+docker-compose -f docker-compose-org1.yaml -f docker-compose-temp.yaml down --volumes
 
 cd scripts
 if [ "$HTTPS" == true ]; then
@@ -49,6 +45,4 @@ cd ..
 if [ "$GENERATE_CERT" != true ]; then
   docker-compose -f docker-compose-temp.yaml -p intermediate-container up >> /dev/null
   docker-compose -f docker-compose-org1.yaml -p ccapi.org1.example.com up -d
-  docker-compose -f docker-compose-org2.yaml -p ccapi.org2.example.com up -d
-  docker-compose -f docker-compose-org3.yaml -p ccapi.org3.example.com up -d
 fi

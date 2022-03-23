@@ -15,7 +15,7 @@ services:
     env_file:
       - .env
     environment:
-      - DOCKER=1
+      - DEPLOY=1
       - CHANNEL=mainchannel
       - CCNAME=gofabcar-cc
     working_dir: /rest-server

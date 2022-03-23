@@ -8,3 +8,5 @@ docker network create gofabcar-cc-net
 docker volume rm $(docker volume ls -q)
 
 yes | docker volume prune
+
+docker container rm -f ccapi.org1.example.com
